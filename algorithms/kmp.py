@@ -1,16 +1,53 @@
-# algorithms/kmp.py
-# Purpose: Linear-time single-pattern search via prefix (pi) table.
-# Functions:
-#   - build_pi(pattern) -> list[int], preprocess_comparisons
-#   - search(text, pattern) -> list[int]
-#   - search_with_stats(text, pattern) -> dict (matches, comparisons, pre_ms, search_ms)
-# Preprocessing:
-#   - Compute pi[i] = length of longest proper prefix == suffix for pattern[:i+1].
-# Search loop:
-#   - Maintain j (matched prefix). On mismatch, fall back j = pi[j-1].
-#   - On full match, record start, set j = pi[j-1].
-# Metrics:
-#   - Count comparisons in both pi-build and search.
-#   - Time preprocessing and search separately.
-# Edge cases: empty pattern, highly repetitive inputs.
-# Tests: parity with Naive on diverse inputs; tricky fallback cases.
+def build_lps(pattern):
+    """
+    Build the LPS (longest prefix that is also suffix) array.
+    Example: pattern = "ababaca"
+    """
+    m = len(pattern)
+    lps = [0] * m
+
+    j = 0  # length of previous longest prefix-suffix
+
+    for i in range(1, m):
+        while j > 0 and pattern[i] != pattern[j]:
+            j = lps[j - 1]
+
+        if pattern[i] == pattern[j]:
+            j += 1
+            lps[i] = j
+
+    return lps
+
+
+def search(text, pattern):
+    """
+    Return all starting indices where pattern occurs in text.
+    """
+    n = len(text)
+    m = len(pattern)
+
+    if m == 0:
+        return list(range(n + 1))
+
+    lps = build_lps(pattern)
+    matches = []
+
+    i = 0  # index for text
+    j = 0  # index for pattern
+
+    while i < n:
+        if text[i] == pattern[j]:
+            i += 1
+            j += 1
+
+            if j == m:   # full match
+                matches.append(i - j)
+                j = lps[j - 1]
+
+        else:
+            if j > 0:
+                j = lps[j - 1]
+            else:
+                i += 1
+
+    return matches

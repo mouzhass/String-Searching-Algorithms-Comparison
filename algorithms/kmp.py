@@ -1,6 +1,6 @@
 def build_lps(pattern):
     """
-    Build the LPS array (Longest Prefix which is also Suffix).
+    Build the LPS array (Longest Prefix).
     lps[i] tells us how much of the pattern we can reuse after mismatch.
     """
     m = len(pattern)

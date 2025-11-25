@@ -4,13 +4,13 @@ A Python-based project that implements and compares four classic string-searchin
 # Algorithms 
 1. Naive Search
 
-  What it does:
+  # What it does:
   Looks for the pattern by checking every single spot in the text, one by one.
 
-  Simple explanation:
+  # Simple explanation:
   “Does the pattern start here? No? Move one step and try again.”
 
-  Good for:
+  # Good for:
   Small texts, 
   Easy to understand, 
   Worst performance on big files
@@ -18,32 +18,32 @@ A Python-based project that implements and compares four classic string-searchin
 
 2. KMP (Knuth–Morris–Pratt)
 
-  What it does:
+  # What it does:
   Searches faster by remembering what it already matched, so it doesn’t re-check the same letters.
 
-  Simple explanation:
+  # Simple explanation:
   “If I see a mismatch, I already know where to jump next.”
 
-  Why it’s faster:
+  # Why it’s faster:
   It uses a helper table (LPS) to skip ahead instead of restarting.
 
-  Good for:
+ #  Good for:
   When the pattern repeats (like “abababab”), 
   More efficient than Naive
   
 
 3. Boyer–Moore
 
-  What it does:
+  # What it does:
   Searches from right to left and skips big chunks of text when it finds a mismatch.
 
-  Simple explanation:
+  # Simple explanation:
   “Start from the end of the pattern. If something doesn’t match, JUMP AHEAD.”
 
-  Why it’s fast:
+  # Why it’s fast:
   It often jumps many characters at once instead of checking every position.
 
-  Good for:
+  # Good for:
   Long patterns, 
   Big text files, 
   Natural English text

@@ -1,0 +1,33 @@
+apple banana orange test algorithm search pattern
+apple banana orange test algorithm search pattern
+apple banana orange test algorithm search pattern
+apple banana orange test algorithm search pattern
+apple banana orange test algorithm search pattern
+
+This file is designed for testing string searching algorithms.
+We repeat the same sequence to stress-test performance.
+apple banana orange test algorithm search pattern
+apple banana orange test algorithm search pattern
+apple banana orange test algorithm search pattern
+
+Searching for repeated text helps measure:
+- How fast each algorithm runs
+- How well they handle many matches
+- Whether multi-pattern search is efficient
+apple banana orange test algorithm search pattern
+apple banana orange test algorithm search pattern
+
+The sequence continues to ensure the file is large enough.
+apple banana orange test algorithm search pattern
+apple banana orange test algorithm search pattern
+apple banana orange test algorithm search pattern
+apple banana orange test algorithm search pattern
+
+More repeated blocks:
+apple banana orange test algorithm search pattern
+apple banana orange test algorithm search pattern
+apple banana orange test algorithm search pattern
+apple banana orange test algorithm search pattern
+apple banana orange test algorithm search pattern
+
+End of file.

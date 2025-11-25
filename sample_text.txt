@@ -1,4 +1,0 @@
-This is a sample text file used for testing string searching algorithms.
-The purpose of this text is to allow Naive, KMP, Boyer-Moore, and Aho-Corasick to run tests.
-This file contains repeated words like apple, apple, banana, orange.
-We want to see how fast algorithms can find these words.

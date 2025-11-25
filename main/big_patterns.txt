@@ -2,5 +2,6 @@ apple
 banana
 orange
 test
-text
 algorithm
+search
+pattern

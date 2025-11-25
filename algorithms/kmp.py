@@ -1,10 +1,8 @@
-"""
+def build_lps(pattern):
+    """
     Build the LPS array (Longest Prefix which is also Suffix).
     lps[i] tells us how much of the pattern we can reuse after mismatch.
-
-    Find all starting positions of pattern in text using KMP.
     """
-def build_lps(pattern):
     m = len(pattern)
     lps = [0] * m
 
@@ -24,6 +22,9 @@ def build_lps(pattern):
 
 
 def search(text, pattern):
+    """
+    Find all starting positions of pattern in text using KMP.
+    """
     n = len(text)
     m = len(pattern)
 
@@ -37,7 +38,7 @@ def search(text, pattern):
     j = 0  # pointer in pattern
 
     while i < n:
-        # characters match -> move forward
+        # characters match → move forward
         if text[i] == pattern[j]:
             i += 1
             j += 1
@@ -51,3 +52,7 @@ def search(text, pattern):
             # mismatch: reuse previous prefix
             if j > 0:
                 j = lps[j - 1]
+            else:
+                i += 1  # no prefix to reuse
+
+    return matches

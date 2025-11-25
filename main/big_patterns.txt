@@ -5,3 +5,5 @@ test
 algorithm
 search
 pattern
+performance
+speed

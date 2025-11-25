@@ -1,1 +1,8 @@
-abracadabra
+The old library in town has a hidden room behind the history section.
+Only a few people know about the secret, and even fewer have seen the room.
+Inside the room, there is a dusty desk with a single notebook on top.
+The notebook contains a mysterious word written many times: starlight.
+People say whoever discovers the meaning of starlight will unlock a great secret.
+Lira visited the library to look for clues about starlight and understand its power.
+Rumors say starlight connects different stories and forgotten memories.
+The goal of this test is to find every time the word starlight appears in this text.

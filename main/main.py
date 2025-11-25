@@ -13,7 +13,8 @@ TEXT_FILES = {
     "1": ("single_text.txt", "Small file for single-pattern testing"),
     "2": ("multi_text.txt", "Medium file with multiple repeated words"),
     "3": ("big_text.txt", "Large repeated-text file for performance"),
-    "4": ("big_text_50000.txt", "Biggest test to get best results for time")
+    "4": ("big_text_50000.txt", "50,000-word performance file"),
+    "5": ("big_text_100k_words.txt", "100,000-word performance file")
 }
 
 PATTERN_FILES = {
@@ -25,19 +26,19 @@ PATTERN_FILES = {
 def choose_file(options, file_type):
     print(f"\n=== Select a {file_type} file ===")
     for key, (filename, description) in options.items():
-        print(f"{key}. {filename:<20} - {description}")
+        print(f"{key}. {filename:<25} - {description}")
 
     while True:
         choice = input("Enter choice: ").strip()
         if choice in options:
             filename, description = options[choice]
-            print(f"Selected {file_type}: {filename} ({description})")
+            print(f"\nSelected {file_type}: {filename} ({description})")
             return filename
         else:
             print("Invalid selection. Try again.")
 
 def run_search():
-    # User selects files from menu
+    # User selects files
     text_file = choose_file(TEXT_FILES, "text")
     pattern_file = choose_file(PATTERN_FILES, "pattern")
 
@@ -46,59 +47,44 @@ def run_search():
 
     print(f"\nLoaded {len(patterns)} pattern(s).")
 
-    # SINGLE-PATTERN MODE
+
+    print("\n=== SEARCH RESULTS ===")
+
+    # NAIVE (always single-pattern logic)
+    t0 = time.time()
     if len(patterns) == 1:
-        print("Mode: SINGLE-PATTERN SEARCH")
-        p = patterns[0]
-
-        print("\n--- Single Pattern Search ---")
-
-        # Naive
-        t0 = time.time()
-        m = len(naive_search(text, p))
-        t1 = time.time()
-        print("Naive:", m, "matches,", (t1 - t0) * 1000, "ms")
-
-        # KMP
-        t0 = time.time()
-        m = len(kmp_search(text, p))
-        t1 = time.time()
-        print("KMP:", m, "matches,", (t1 - t0) * 1000, "ms")
-
-        # Boyer-Moore
-        t0 = time.time()
-        m = len(bm_search(text, p))
-        t1 = time.time()
-        print("Boyer-Moore:", m, "matches,", (t1 - t0) * 1000, "ms")
-
-    # MULTI-PATTERN MODE
+        naive_matches = len(naive_search(text, patterns[0]))
     else:
-        print("Mode: MULTI-PATTERN SEARCH")
+        naive_matches = sum(len(naive_search(text, p)) for p in patterns)
+    t1 = time.time()
+    print("Naive(Single-Pattern):         ", naive_matches, "matches,", (t1 - t0) * 1000, "ms")
 
-        print("\n--- Multi-Pattern Search ---")
+    # KMP
+    t0 = time.time()
+    if len(patterns) == 1:
+        kmp_matches = len(kmp_search(text, patterns[0]))
+    else:
+        kmp_matches = sum(len(kmp_search(text, p)) for p in patterns)
+    t1 = time.time()
+    print("KMP:                           ", kmp_matches, "matches,", (t1 - t0) * 1000, "ms")
 
-        # Aho-Corasick
+    # BOYER-MOORE
+    t0 = time.time()
+    if len(patterns) == 1:
+        bm_matches = len(bm_search(text, patterns[0]))
+    else:
+        bm_matches = sum(len(bm_search(text, p)) for p in patterns)
+    t1 = time.time()
+    print("Boyer-Moore:                   ", bm_matches, "matches,", (t1 - t0) * 1000, "ms")
+
+    # AHO-CORASICK (ONLY IF MULTI-PATTERN)
+    if len(patterns) > 1:
         t0 = time.time()
         ac_res = aho_search(text, patterns)
         t1 = time.time()
-        total = sum(len(v) for v in ac_res.values())
-        print("Aho-Corasick:", total, "matches,", (t1 - t0) * 1000, "ms")
+        ac_total = sum(len(v) for v in ac_res.values())
+        print("Aho-Corasick(Multi-Pattern):   ", ac_total, "matches,", (t1 - t0) * 1000, "ms")
 
-        # KMP xN
-        t0 = time.time()
-        total = 0
-        for p in patterns:
-            total += len(kmp_search(text, p))
-        t1 = time.time()
-        print("KMP xN:", total, "matches,", (t1 - t0) * 1000, "ms")
-
-        # Boyer-Moore xN
-        t0 = time.time()
-        total = 0
-        for p in patterns:
-            total += len(bm_search(text, p))
-        t1 = time.time()
-        print("Boyer-Moore xN:", total, "matches,", (t1 - t0) * 1000, "ms")
 
 def main():
     while True:

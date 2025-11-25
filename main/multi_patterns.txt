@@ -1,5 +1,10 @@
-This document contains several fruits and objects used for testing.
-We want to search for words such as apple, banana, orange, and melon.
-The Aho-Corasick algorithm should handle all patterns together.
-Meanwhile, KMP and Boyer-Moore must search for each word separately.
-This helps us compare multi-pattern performance.
+apple
+banana
+orange
+melon
+search
+algorithm
+pattern
+magic
+forest
+dragon

@@ -11,9 +11,10 @@ A Python-based project that implements and compares four classic string-searchin
   “Does the pattern start here? No? Move one step and try again.”
 
   Good for:
-  Small texts
-  Easy to understand
+  Small texts, 
+  Easy to understand, 
   Worst performance on big files
+  
 
 2. KMP (Knuth–Morris–Pratt)
 
@@ -27,8 +28,9 @@ A Python-based project that implements and compares four classic string-searchin
   It uses a helper table (LPS) to skip ahead instead of restarting.
 
   Good for:
-  When the pattern repeats (like “abababab”)
+  When the pattern repeats (like “abababab”), 
   More efficient than Naive
+  
 
 3. Boyer–Moore
 
@@ -42,9 +44,11 @@ A Python-based project that implements and compares four classic string-searchin
   It often jumps many characters at once instead of checking every position.
 
   Good for:
-  Long patterns
-  Big text files
+  Long patterns, 
+  Big text files, 
   Natural English text
+
+  
 
 4. Aho–Corasick
 
@@ -58,6 +62,6 @@ A Python-based project that implements and compares four classic string-searchin
   It only goes through the text once, no matter how many patterns you have.
   
   Good for:
-  Multiple search words
-  Huge logs / documents
-  Fast multi-pattern searching
+  Multiple search words, 
+  Huge logs / documents, 
+  Fast multi-pattern searching, 

@@ -9,9 +9,11 @@ def load_file(path):
         return f.read()
 
 def main():
+    # Load the main text
     text_file = input("Enter text file: ")
     text = load_file(text_file)
 
+    # Load pattern(s)
     pattern_file = input("Enter pattern file (one pattern per line): ")
     patterns = load_file(pattern_file).splitlines()
 
@@ -71,8 +73,6 @@ def main():
             total += len(bm_search(text, p))
         t1 = time.time()
         print("Boyer-Moore xN:", total, "matches,", (t1 - t0) * 1000, "ms")
-
-
 
 if __name__ == "__main__":
     main()

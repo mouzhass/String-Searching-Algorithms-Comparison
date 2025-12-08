@@ -1,24 +1,21 @@
 def search(text, pattern):
     matches = []
+    comparisons = 0
     n = len(text)
     m = len(pattern)
 
-    # Empty pattern matches at every position
     if m == 0:
-        return list(range(n + 1))
+        return matches, comparisons
 
-    #align the pattern at each position in the text
     for i in range(n - m + 1):
-        ok = True
-
-        # Compare pattern with the text one character at a time
-        for j in range(m):
+        j = 0
+        while j < m:
+            comparisons += 1
             if text[i + j] != pattern[j]:
-                ok = False
                 break
+            j += 1
 
-        # If all characters matched, record the position
-        if ok:
+        if j == m:
             matches.append(i)
 
-    return matches
+    return matches, comparisons

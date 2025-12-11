@@ -69,9 +69,8 @@ def run_algorithm(algorithm_name, search_function, text, patterns):
     return total_matches, total_comparisons, time_ms
 
 
-# Step 3: Create bar charts
+# Step 4: Create bar charts
 def create_plots(results):
-    """Make 2 charts showing execution time and comparisons"""
 
     # Get data from results
     algorithm_names = []
@@ -130,11 +129,8 @@ def create_plots(results):
     plt.show()
 
 
-# Step 4: Main program
-def main():
-    print("="*50)
-    print("STRING SEARCH ALGORITHM COMPARISON")
-    print("="*50)
+# Step 5: Run comparison test
+def run_comparison_test():
 
     # Ask user to select files from menu
     text_file = choose_file(TEXT_FILES, "text")
@@ -195,7 +191,41 @@ def main():
     print("\nGenerating charts...")
     create_plots(results)
 
-    print("\nDone!")
+    print("\nTest completed!")
+
+
+# Step 6: Main menu loop
+def main():
+    while True:
+        print("\n" + "="*50)
+        print("STRING SEARCH ALGORITHM COMPARISON")
+        print("="*50)
+        print("\nMain Menu:")
+        print("1. Run Algorithm Comparison Test")
+        print("2. Exit")
+        print("="*50)
+
+        choice = input("\nEnter your choice (1-2): ").strip()
+
+        if choice == "1":
+            try:
+                run_comparison_test()
+            except FileNotFoundError as e:
+                print(f"\nError: File not found - {e}")
+                print("Please make sure all required files are in the correct directory.")
+            except Exception as e:
+                print(f"\nAn error occurred: {e}")
+                print("Returning to main menu...")
+
+        elif choice == "2":
+            print("\n" + "="*50)
+            print("Thank you for using the algorithm comparison tool!")
+            print("Goodbye!")
+            print("="*50)
+            break
+
+        else:
+            print("\nInvalid choice. Please enter 1 or 2.")
 
 
 if __name__ == "__main__":

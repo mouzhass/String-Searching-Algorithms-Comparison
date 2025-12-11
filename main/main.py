@@ -195,7 +195,7 @@ def main():
     print("\nGenerating charts...")
     create_plots(results)
 
-    print("\n✅ Done!")
+    print("\nDone!")
 
 
 if __name__ == "__main__":
